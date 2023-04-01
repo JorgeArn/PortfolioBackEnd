@@ -1,0 +1,1 @@
+INSERT INTO usuarios VALUES (1, 'jorge.arnal08@gmail.com', 'Miportfolio07', 1)
