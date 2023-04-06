@@ -1,28 +1,31 @@
-package com.miportfolio.miportfolio.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+package com.miportfolio.miportfolio.Dto;
+
+import jakarta.validation.constraints.NotBlank;
 import java.time.Year;
 
 
-@Entity 
-public class ExpLaboral {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY )
-    private int id;
+
+public class DtoExpLaboral {
+    @NotBlank
     private String nombre_empresa;
+    
+    @NotBlank
     private Year fecha_inicio;
+    
     private Year fecha_fin;
+    
+    @NotBlank
     private String descripcion;
+ 
     private String url_logo;
     
     //constructores
-    public ExpLaboral() {
+
+    public DtoExpLaboral() {
     }
 
-    public ExpLaboral(String nombre_empresa, Year fecha_inicio, Year fecha_fin, String descripcion, String url_logo) {
+    public DtoExpLaboral(String nombre_empresa, Year fecha_inicio, Year fecha_fin, String descripcion, String url_logo) {
         this.nombre_empresa = nombre_empresa;
         this.fecha_inicio = fecha_inicio;
         this.fecha_fin = fecha_fin;
@@ -31,14 +34,6 @@ public class ExpLaboral {
     }
     
     //getters and setters
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getNombre_empresa() {
         return nombre_empresa;
