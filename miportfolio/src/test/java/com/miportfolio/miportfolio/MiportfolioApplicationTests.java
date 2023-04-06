@@ -1,10 +1,10 @@
-package com.miportfolio.jorge;
+package com.miportfolio.miportfolio;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class JorgeApplicationTests {
+class MiportfolioApplicationTests {
 
 	@Test
 	void contextLoads() {
