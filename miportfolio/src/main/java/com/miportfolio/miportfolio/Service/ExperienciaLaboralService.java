@@ -3,9 +3,9 @@ package com.miportfolio.miportfolio.Service;
 
 import com.miportfolio.miportfolio.Entity.ExperienciaLaboral;
 import com.miportfolio.miportfolio.Repository.ExperienciaLaboralRepository;
-import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

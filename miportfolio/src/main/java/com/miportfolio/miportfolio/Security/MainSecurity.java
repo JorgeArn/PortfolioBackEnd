@@ -15,9 +15,11 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 
 @Configuration
@@ -41,9 +43,10 @@ public class MainSecurity extends WebSecurityConfigurerAdapter{
     
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable().AuthorizeRequests().antMatchers("/auth/**").permitAll().anyRequest().authenticated.and()
+        http.cors().and().csrf().disable().authorizeRequests().antMatchers("**").permitAll().anyRequest().authenticated().and()
                 .exceptionHandling().authenticationEntryPoint(jwtEntryPoint)
-                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);        
+                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        http.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }
     
     @Override
@@ -51,6 +54,7 @@ public class MainSecurity extends WebSecurityConfigurerAdapter{
         return super.authenticationManager();
     }
     
+    @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();

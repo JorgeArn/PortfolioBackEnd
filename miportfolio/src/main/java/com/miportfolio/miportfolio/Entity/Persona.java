@@ -1,12 +1,13 @@
 package com.miportfolio.miportfolio.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+
 import java.sql.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 
 
@@ -24,7 +25,6 @@ public class Persona {
     @Size(min = 1, max = 45, message = "no cumple con la longitud")
     private String apellido;
     
-    
     private Date fechaNac;
     
     @Size(min = 1, max = 1050, message = "no cumple con la longitud")
@@ -37,8 +37,22 @@ public class Persona {
     
     private String correo;
     
+    //Constructores
 
-    //getters and setters
+    public Persona() {
+    }
+
+    public Persona(String nombre, String apellido, Date fechaNac, String acerca_de, String url_foto, String correo) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.fechaNac = fechaNac;
+        this.acerca_de = acerca_de;
+        this.url_foto = url_foto;
+        this.correo = correo;
+    }
+    
+    //Getters and Setters
+
     public Long getId() {
         return id;
     }
@@ -94,7 +108,7 @@ public class Persona {
     public void setCorreo(String correo) {
         this.correo = correo;
     }
-
+    
         
     
 }

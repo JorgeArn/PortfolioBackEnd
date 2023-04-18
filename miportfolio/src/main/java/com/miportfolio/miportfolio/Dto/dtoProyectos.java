@@ -1,16 +1,16 @@
 
 package com.miportfolio.miportfolio.Dto;
 
-import jakarta.validation.constraints.NotBlank;
-import java.time.Year;
+import javax.validation.constraints.NotBlank;
+
 
 
 
 public class dtoProyectos {
     @NotBlank
     private String nombre;
-    private Year fechaInicio;
-    private Year fechaFin;
+    private String fechaInicio;
+    private String fechaFin;
     private String descripcion;
     private String urlImagen;
     
@@ -19,7 +19,7 @@ public class dtoProyectos {
     public dtoProyectos() {
     }
 
-    public dtoProyectos(String nombre, Year fechaInicio, Year fechaFin, String descripcion, String urlImagen) {
+    public dtoProyectos(String nombre, String fechaInicio, String fechaFin, String descripcion, String urlImagen) {
         this.nombre = nombre;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
@@ -37,19 +37,19 @@ public class dtoProyectos {
         this.nombre = nombre;
     }
 
-    public Year getFechaInicio() {
+    public String getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(Year fechaInicio) {
+    public void setFechaInicio(String fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public Year getFechaFin() {
+    public String getFechaFin() {
         return fechaFin;
     }
 
-    public void setFechaFin(Year fechaFin) {
+    public void setFechaFin(String fechaFin) {
         this.fechaFin = fechaFin;
     }
 

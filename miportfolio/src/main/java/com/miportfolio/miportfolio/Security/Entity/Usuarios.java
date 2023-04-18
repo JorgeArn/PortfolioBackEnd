@@ -1,18 +1,19 @@
 
 package com.miportfolio.miportfolio.Security.Entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.validation.constraints.NotNull;
+
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotNull;
 
 
 @Entity
@@ -30,7 +31,7 @@ public class Usuarios {
     @NotNull
     private String contraseña;
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "usuarios_rol", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "rol_id"))
+    @JoinTable(name = "usuarios_rol", joinColumns = @JoinColumn(name = "usuarios_id"), inverseJoinColumns = @JoinColumn(name = "rol_id"))
     private Set<Rol> roles = new HashSet<>();
     
     //Constructores

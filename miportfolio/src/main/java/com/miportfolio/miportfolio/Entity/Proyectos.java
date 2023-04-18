@@ -1,11 +1,12 @@
 
 package com.miportfolio.miportfolio.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import java.time.Year;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+
 
 
 @Entity
@@ -14,8 +15,8 @@ public class Proyectos {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nombre;
-    private Year fechaInicio;
-    private Year fechaFin;
+    private String fechaInicio;
+    private String fechaFin;
     private String descripcion;
     private String urlImagen;
     
@@ -24,7 +25,7 @@ public class Proyectos {
     public Proyectos() {
     }
 
-    public Proyectos(String nombre, Year fechaInicio, Year fechaFin, String descripcion, String urlImagen) {
+    public Proyectos(String nombre, String fechaInicio, String fechaFin, String descripcion, String urlImagen) {
         this.nombre = nombre;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
@@ -50,19 +51,19 @@ public class Proyectos {
         this.nombre = nombre;
     }
 
-    public Year getFechaInicio() {
+    public String getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(Year fechaInicio) {
+    public void setFechaInicio(String fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public Year getFechaFin() {
+    public String getFechaFin() {
         return fechaFin;
     }
 
-    public void setFechaFin(Year fechaFin) {
+    public void setFechaFin(String fechaFin) {
         this.fechaFin = fechaFin;
     }
 

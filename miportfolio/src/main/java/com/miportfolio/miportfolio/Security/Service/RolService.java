@@ -7,8 +7,8 @@ package com.miportfolio.miportfolio.Security.Service;
 import com.miportfolio.miportfolio.Security.Entity.Rol;
 import com.miportfolio.miportfolio.Security.Enums.RolNombre;
 import com.miportfolio.miportfolio.Security.Repository.iRolRepository;
-import jakarta.transaction.Transactional;
 import java.util.Optional;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
