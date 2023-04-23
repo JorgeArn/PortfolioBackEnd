@@ -7,6 +7,7 @@ import java.sql.Date;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +30,7 @@ public class PersonaController {
     }
     
     //crea una persona
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/personas/crear")
     public String createPersona(@RequestBody Persona persona){
         ipersonaService.savePersona(persona);
@@ -36,6 +38,7 @@ public class PersonaController {
     }
     
     //borra una persona
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/personas/borrar/{id}")
     public String deletePersona(@PathVariable Long id) {
         ipersonaService.deletePersona(id);
@@ -44,14 +47,14 @@ public class PersonaController {
     
     //modifica o edita una persona por id
     //URL:PUERTO/personas/editar/4/nombre & apellido & fechaNac & etc.
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/personas/editar/{id}")
     public Persona editPersona(@PathVariable Long id,
                                @RequestParam("nombre") String nuevoNombre,
                                @RequestParam("apellido") String nuevoApellido,
                                @RequestParam("fechaNac") Date nuevaFechaNac,
                                @RequestParam("acerca_de") String nuevoAcercaDe,
-                               @RequestParam("url_foto") String nuevaUrlFoto,
-                               @RequestParam("correo") String nuevoCorreo){
+                               @RequestParam("url_foto") String nuevaUrlFoto){
         Persona persona = ipersonaService.findPersona(id);
         
         persona.setNombre(nuevoNombre);
@@ -59,7 +62,6 @@ public class PersonaController {
         persona.setFechaNac(nuevaFechaNac);
         persona.setAcerca_de(nuevoAcercaDe);
         persona.setUrl_foto(nuevaUrlFoto);
-        persona.setCorreo(nuevoCorreo);
         
         ipersonaService.savePersona(persona);
         return persona;

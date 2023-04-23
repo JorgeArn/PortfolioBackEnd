@@ -13,7 +13,7 @@ public class LoginUsuario {
     @NotBlank
     private String nombreUsuario;
     @NotBlank
-    private String contraseña; 
+    private String password; 
     
     //Getters and Setters
 
@@ -25,12 +25,12 @@ public class LoginUsuario {
         this.nombreUsuario = nombreUsuario;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getPassword() {
+        return password;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setPassword(String password) {
+        this.password = password;
     }
     
 }

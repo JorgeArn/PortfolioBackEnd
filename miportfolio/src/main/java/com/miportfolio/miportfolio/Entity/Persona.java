@@ -35,20 +35,17 @@ public class Persona {
     private String url_foto;
     
     
-    private String correo;
-    
     //Constructores
 
     public Persona() {
     }
 
-    public Persona(String nombre, String apellido, Date fechaNac, String acerca_de, String url_foto, String correo) {
+    public Persona(String nombre, String apellido, Date fechaNac, String acerca_de, String url_foto) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.fechaNac = fechaNac;
         this.acerca_de = acerca_de;
         this.url_foto = url_foto;
-        this.correo = correo;
     }
     
     //Getters and Setters
@@ -100,15 +97,6 @@ public class Persona {
     public void setUrl_foto(String url_foto) {
         this.url_foto = url_foto;
     }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-    
-        
+          
     
 }
