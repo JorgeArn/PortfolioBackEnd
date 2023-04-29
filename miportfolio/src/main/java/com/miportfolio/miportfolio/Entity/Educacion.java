@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 
 
@@ -19,18 +21,22 @@ public class Educacion {
     private String fechaFin;
     private String descripcion;
     private String urlLogo;
+    @ManyToOne
+    @JoinColumn(name = "persona_id")
+    private Persona persona_id;
     
     //Constructores
 
     public Educacion() {
     }
 
-    public Educacion(String nombre, String fechaInicio, String fechaFin, String descripcion, String urlLogo) {
+    public Educacion(String nombre, String fechaInicio, String fechaFin, String descripcion, String urlLogo, Persona persona_id) {
         this.nombre = nombre;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.descripcion = descripcion;
         this.urlLogo = urlLogo;
+        this.persona_id = persona_id;
     }
     
     //Getters and Setters
@@ -83,5 +89,12 @@ public class Educacion {
         this.urlLogo = urlLogo;
     }
     
+    public Persona getPersona_id() {
+        return persona_id;
+    }
+    
+    public void setPersona_id(Persona persona_id) {
+        this.persona_id = persona_id;
+    }
 }
 
