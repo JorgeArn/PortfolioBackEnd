@@ -2,7 +2,6 @@
 package com.miportfolio.miportfolio.Dto;
 
 
-import com.miportfolio.miportfolio.Entity.Persona;
 import javax.validation.constraints.NotBlank;
 
 
@@ -15,20 +14,18 @@ public class dtoEducacion {
     @NotBlank
     private String descripcion;
     private String urlLogo;
-    private Persona persona_id;
     
     //Constructores
 
     public dtoEducacion() {
     }
 
-    public dtoEducacion(String nombre, String fechaInicio, String fechaFin, String descripcion, String urlLogo, Persona persona_id) {
+    public dtoEducacion(String nombre, String fechaInicio, String fechaFin, String descripcion, String urlLogo) {
         this.nombre = nombre;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.descripcion = descripcion;
         this.urlLogo = urlLogo;
-        this.persona_id = persona_id;
     }
     
     //Getter and Setters
@@ -71,13 +68,5 @@ public class dtoEducacion {
 
     public void setUrlLogo(String urlLogo) {
         this.urlLogo = urlLogo;
-    }
-    
-    public Persona getPersona_id() {
-        return persona_id;
-    }
-
-    public void setPersona_id(Persona persona_id) {
-        this.persona_id = persona_id;
     }
 }

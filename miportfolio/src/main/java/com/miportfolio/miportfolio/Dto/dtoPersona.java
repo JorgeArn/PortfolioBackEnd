@@ -1,45 +1,27 @@
-package com.miportfolio.miportfolio.Entity;
 
+package com.miportfolio.miportfolio.Dto;
 
 import java.sql.Date;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.NotBlank;
 
 
-
-@Entity
-public class Persona {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) 
-    private int id;
-    
-    @NotNull
-    @Size(min = 1, max = 45, message = "no cumple con la longitud")
+public class dtoPersona {
+    @NotBlank
     private String nombre;
-    
-    @NotNull
-    @Size(min = 1, max = 45, message = "no cumple con la longitud")
+    @NotBlank
     private String apellido;
-    
     private Date fechaNac;
-    
-    @Size(min = 1, max = 1050, message = "no cumple con la longitud")
+    @NotBlank
     private String acerca_de;
-    
-    
+    @NotBlank
     private String url_foto;
-    
     
     //Constructores
 
-    public Persona() {
+    public dtoPersona() {
     }
 
-    public Persona(String nombre, String apellido, Date fechaNac, String acerca_de, String url_foto) {
+    public dtoPersona(String nombre, String apellido, Date fechaNac, String acerca_de, String url_foto) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.fechaNac = fechaNac;
@@ -48,14 +30,6 @@ public class Persona {
     }
     
     //Getters and Setters
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getNombre() {
         return nombre;
@@ -96,6 +70,5 @@ public class Persona {
     public void setUrl_foto(String url_foto) {
         this.url_foto = url_foto;
     }
-          
     
 }
