@@ -17,7 +17,6 @@ com\miportfolio\miportfolio\Controller\ExperienciaLaboralController.class
 com\miportfolio\miportfolio\Controller\PersonaController.class
 com\miportfolio\miportfolio\Security\jwt\JwtProvider.class
 com\miportfolio\miportfolio\Security\Entity\UsuarioPrincipal.class
-com\miportfolio\miportfolio\WebConfig.class
 com\miportfolio\miportfolio\Dto\dtoEducacion.class
 com\miportfolio\miportfolio\Dto\dtoProyectos.class
 com\miportfolio\miportfolio\Repository\EducacionRepository.class
