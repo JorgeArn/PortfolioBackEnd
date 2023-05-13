@@ -10,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,6 +44,7 @@ public class ProyectosController {
         return new ResponseEntity(proyectos, HttpStatus.OK);
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/borrar/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") int id){
         if(!proyectosService.existsById(id))
@@ -53,6 +55,7 @@ public class ProyectosController {
         return new ResponseEntity(new Mensaje("Proyecto eliminado correctamente"), HttpStatus.OK);
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/crear")
     public ResponseEntity<?> create(@RequestBody dtoProyectos dtoproyectos){
         if(StringUtils.isBlank(dtoproyectos.getNombre())){
@@ -63,11 +66,12 @@ public class ProyectosController {
         }
         
         Proyectos proyectos = new Proyectos(dtoproyectos.getNombre(), dtoproyectos.getFechaInicio(), dtoproyectos.getFechaFin(),
-                                            dtoproyectos.getDescripcion(), dtoproyectos.getUrlImagen());
+                                            dtoproyectos.getDescripcion(), dtoproyectos.getUrlProyecto(), dtoproyectos.getUrlImagen());
         proyectosService.save(proyectos);
         return new ResponseEntity(new Mensaje("Proyecto creado correctamente"), HttpStatus.OK);
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/editar/{id}")
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody dtoProyectos dtoproyectos){
         if(!proyectosService.existsById(id)){
@@ -87,6 +91,7 @@ public class ProyectosController {
         proyectos.setFechaInicio(dtoproyectos.getFechaInicio());
         proyectos.setFechaFin(dtoproyectos.getFechaFin());
         proyectos.setDescripcion(dtoproyectos.getDescripcion());
+        proyectos.setUrlProyecto(dtoproyectos.getUrlProyecto());
         proyectos.setUrlImagen(dtoproyectos.getUrlImagen());
         
         proyectosService.save(proyectos);

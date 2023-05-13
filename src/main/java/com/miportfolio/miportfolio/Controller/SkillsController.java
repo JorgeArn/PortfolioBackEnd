@@ -10,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,6 +44,7 @@ public class SkillsController {
         return new ResponseEntity(skills, HttpStatus.OK);
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/borrar/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") int id){
         if(!skillsService.existsById(id))
@@ -53,6 +55,7 @@ public class SkillsController {
         return new ResponseEntity(new Mensaje("Hard and soft skill eliminado correctamente"), HttpStatus.OK);
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/crear")
     public ResponseEntity<?> create(@RequestBody dtoSkills dtoskills){
         if(StringUtils.isBlank(dtoskills.getNombre())){
@@ -67,6 +70,7 @@ public class SkillsController {
         return new ResponseEntity(new Mensaje("Nueva skill creada correctamente"), HttpStatus.OK);
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/editar/{id}")
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody dtoSkills dtoskills){
         if(!skillsService.existsById(id)){
