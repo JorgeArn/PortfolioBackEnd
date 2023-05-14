@@ -47,6 +47,7 @@ public class ExperienciaLaboralController {
     
     //Crea una nueva experiencia laboral
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/crear")
     public ResponseEntity<?> create(@RequestBody dtoExperienciaLaboral dtoexp){
         if(StringUtils.isBlank(dtoexp.getNombreEmpresa()))
@@ -62,6 +63,7 @@ public class ExperienciaLaboralController {
     
     //Edita una experiencia laboral
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/editar/{id}")
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody dtoExperienciaLaboral dtoexp){
         //Validacion si existe el ID
@@ -87,6 +89,7 @@ public class ExperienciaLaboralController {
     
     //Elimina una experiencia laboral
     
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/borrar/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") int id){
         if(!experienciaLaboralService.existsById(id))

@@ -1,4 +1,3 @@
- 
 package com.miportfolio.miportfolio.Controller;
 
 import com.miportfolio.miportfolio.Dto.dtoSkills;
@@ -21,73 +20,74 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 @RestController
 @CrossOrigin(origins = "https://miportfoliojlarn.web.app")
 @RequestMapping("/skills")
 public class SkillsController {
+
     @Autowired
     SkillsService skillsService;
-    
+
     @GetMapping("/lista")
-    public ResponseEntity<List<Skills>> list(){
+    public ResponseEntity<List<Skills>> list() {
         List<Skills> list = skillsService.list();
         return new ResponseEntity(list, HttpStatus.OK);
     }
-    
+
     @GetMapping("/detail/{id}")
-    public ResponseEntity<Skills> getById(@PathVariable("id") int id){
-        if(!skillsService.existsById(id)){
+    public ResponseEntity<Skills> getById(@PathVariable("id") int id) {
+        if (!skillsService.existsById(id)) {
             return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.NOT_FOUND);
-        }    
+        }
         Skills skills = skillsService.getOne(id).get();
         return new ResponseEntity(skills, HttpStatus.OK);
     }
-    
-   
+
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/borrar/{id}")
-    public ResponseEntity<?> delete(@PathVariable("id") int id){
-        if(!skillsService.existsById(id))
+    public ResponseEntity<?> delete(@PathVariable("id") int id) {
+        if (!skillsService.existsById(id)) {
             return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.NOT_FOUND);
-        
+        }
+
         skillsService.delete(id);
-        
+
         return new ResponseEntity(new Mensaje("Hard and soft skill eliminado correctamente"), HttpStatus.OK);
     }
     
-    
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/crear")
-    public ResponseEntity<?> create(@RequestBody dtoSkills dtoskills){
-        if(StringUtils.isBlank(dtoskills.getNombre())){
+    public ResponseEntity<?> create(@RequestBody dtoSkills dtoskills) {
+        if (StringUtils.isBlank(dtoskills.getNombre())) {
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
         }
-        if(skillsService.existsByNombre(dtoskills.getNombre())){
+        if (skillsService.existsByNombre(dtoskills.getNombre())) {
             return new ResponseEntity(new Mensaje("Esa skill ya existe"), HttpStatus.BAD_REQUEST);
         }
-        
+
         Skills skills = new Skills(dtoskills.getNombre(), dtoskills.getPorcentaje());
         skillsService.save(skills);
         return new ResponseEntity(new Mensaje("Nueva skill creada correctamente"), HttpStatus.OK);
     }
     
-    
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/editar/{id}")
-    public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody dtoSkills dtoskills){
-        if(!skillsService.existsById(id)){
+    public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody dtoSkills dtoskills) {
+        if (!skillsService.existsById(id)) {
             return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.NOT_FOUND);
         }
-        if(skillsService.existsByNombre(dtoskills.getNombre()) && skillsService.getByNombre(dtoskills.getNombre()).get().getId() != id){
+        if (skillsService.existsByNombre(dtoskills.getNombre()) && skillsService.getByNombre(dtoskills.getNombre()).get().getId() != id) {
             return new ResponseEntity(new Mensaje("Esa skill ya existe"), HttpStatus.BAD_REQUEST);
-        }  
-        
-        if(StringUtils.isBlank(dtoskills.getNombre())){
+        }
+
+        if (StringUtils.isBlank(dtoskills.getNombre())) {
             return new ResponseEntity(new Mensaje("El nombre de la skill es obligatorio"), HttpStatus.BAD_REQUEST);
-        }    
-        
+        }
+
         Skills skills = skillsService.getOne(id).get();
         skills.setNombre(dtoskills.getNombre());
         skills.setPorcentaje(dtoskills.getPorcentaje());
-        
+
         skillsService.save(skills);
         return new ResponseEntity(new Mensaje("Skill modificada correctamente"), HttpStatus.OK);
     }
